@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use NodeJS test
+      - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
@@ -23,7 +23,7 @@ jobs:
         run: npm run build
       - name: Deploy to stage
         if: github.event_name == 'push'
-        run: npx surge -- project ./build --domain spectacular-chain.surge.sh
+        run: npx surge --project ./build --domain spectacular-chain.surge.sh
         env: 
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
